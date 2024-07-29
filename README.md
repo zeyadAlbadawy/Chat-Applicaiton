@@ -16,7 +16,10 @@ This project is a basic chat application implemented in Kotlin. It includes both
 
 ## It Consists Of 
 # Register Page
-![dw](https://github.com/user-attachments/assets/c096c2c4-7bda-4026-af82-77f46eef10d3)
+it looks like that 
+                          ![dw](https://github.com/user-attachments/assets/c096c2c4-7bda-4026-af82-77f46eef10d3)
 
-#Login Page
-![req](https://github.com/user-attachments/assets/a288a88e-d59a-41ff-97d3-43ad0909d7cd)
+
+
+# Login Page
+                         ![req](https://github.com/user-attachments/assets/a288a88e-d59a-41ff-97d3-43ad0909d7cd)
