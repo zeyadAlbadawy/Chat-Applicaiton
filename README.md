@@ -16,10 +16,15 @@ This project is a basic chat application implemented in Kotlin. It includes both
 
 ## It Consists Of 
 # Register Page
-it looks like that 
-                          ![dw](https://github.com/user-attachments/assets/c096c2c4-7bda-4026-af82-77f46eef10d3)
+
+- Looks Like that Which Allow Non-Registered Users To Enter Their Credintials 
+
+  ![dw](https://github.com/user-attachments/assets/57d2722e-c41c-4535-a619-9c0dc2424811)
 
 
 
 # Login Page
-                         ![req](https://github.com/user-attachments/assets/a288a88e-d59a-41ff-97d3-43ad0909d7cd)
+
+- If the User Has An account then, Tab to login and enter your credintials 
+
+  ![req](https://github.com/user-attachments/assets/dd6be61d-c483-4203-9ecb-0dbd43623646)
