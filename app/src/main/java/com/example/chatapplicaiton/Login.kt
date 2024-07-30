@@ -34,5 +34,10 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
+        btnLogin.setOnClickListener{
+            Auth(editEmail.text.toString(),editPassword.text.toString()).Log_in()
+
+        }
+
     }
 }
