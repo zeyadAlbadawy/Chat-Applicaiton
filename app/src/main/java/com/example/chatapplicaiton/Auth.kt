@@ -7,19 +7,15 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 class Auth(val email : String,val pass :String) {
     private val auth = Firebase.auth
-     companion object{
-         var error : AuthResult?=null
-     }
-    fun Log_in() : String {
+
+    fun Log_in() {
 
         val credential = auth.signInWithEmailAndPassword(email, pass)
         if (credential.isSuccessful) {
             Log.d("message", "success")
         }else{
-            error= credential.result
-            Log.d("message", error.toString())
+            Log.d("message", credential.result.toString())
         }
-     return error.toString()
     }
 
 }
