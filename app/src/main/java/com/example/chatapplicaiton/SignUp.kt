@@ -32,7 +32,6 @@ class SignUp : AppCompatActivity() {
         btnSignUp.setOnClickListener{
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
-            SignUp(email,password);
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -42,16 +41,4 @@ class SignUp : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("NotConstructor")
-    private fun SignUp(email: String, password: String) {
-        // logic of creating user
-       // mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){ task ->
-         //   if(task.isSuccessful){
-         //       val intent = Intent (this@SignUp, MainActivity::class.java)
-         //       startActivity(intent)
-         //   }else{
-         //       Toast.makeText(this@SignUp , "some error occurred" , Toast.LENGTH_SHORT).show()
-          //  }
-    //}
-    }
 }

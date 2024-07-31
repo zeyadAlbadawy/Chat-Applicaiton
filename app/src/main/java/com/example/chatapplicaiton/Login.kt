@@ -41,24 +41,6 @@ class Login : AppCompatActivity() {
         btnLogin.setOnClickListener {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
-            login(email, password)
-        }
-    }
-
-    private fun login(email: String, password: String) {
-        val mAuth = FirebaseAuth.getInstance()
-
-        // Authenticate user with email and password
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                // User successfully logged in
-                val intent = Intent(this@Login, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                // Handle login failure
-                Toast.makeText(this@Login, "Login failed. Please check your credentials.", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 
