@@ -1,6 +1,7 @@
 package com.example.chatapplicaiton
 import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -11,6 +12,7 @@ class Auth(val email : String ?,val pass :String ?) {
     private val auth = Firebase.auth
     companion object{
         var errormap :MutableMap<String,String> ?=null
+        var sinupres :Boolean?=false
     }
 
     fun Log_in() {
@@ -26,15 +28,15 @@ class Auth(val email : String ?,val pass :String ?) {
                         val error = e.message
                         when (error) {
                             "The email address is badly formatted." -> {
-                                errormap!!["invalid_email"] = "please enter valid email"
+                                errormap!!["invalid_email"] = "The email address is badly formatted."
                             }
 
                             "Authentication failed: There is no user record corresponding to this identifier. The user may have been deleted." -> {
-                                errormap!!["userNotfound"] = "the user doesn't be founded"
+                                errormap!!["userNotfound"] = "Authentication failed: There is no user record corresponding to this identifier. The user may have been deleted."
                             }
 
                             "The password is invalid or the user does not have a password." -> {
-                                errormap!!["incorrect_password"] = "please enter the correct password"
+                                errormap!!["incorrect_password"] = "The password is invalid or the user does not have a password."
                             }
 
 
@@ -48,8 +50,10 @@ class Auth(val email : String ?,val pass :String ?) {
     fun signup(name : String){
         auth.createUserWithEmailAndPassword(email!!,pass!!).addOnCompleteListener{
             if(it.isSuccessful){
-                pass
+                sinupres=it.isSuccessful
 
+            }else{
+                pass
             }
         }
     }
