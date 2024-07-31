@@ -9,7 +9,7 @@ import com.google.firebase.ktx.Firebase
 class Auth(val email : String,val pass :String) {
     private val auth = Firebase.auth
     companion object{
-        var errormap :Map<String,String> ?=null
+        var errormap :MutableMap<String,String> ?=null
     }
 
     fun Log_in() {
@@ -25,9 +25,13 @@ class Auth(val email : String,val pass :String) {
                     val error = e.message
                     when(error){
                         "The email address is badly formatted." -> {
-                            errormap[""]="please enter invalid email"}
-                        "Authentication failed: There is no user record corresponding to this identifier. The user may have been deleted." -> {}
-                        "The password is invalid or the user does not have a password." -> {}
+                            errormap!!["invalid_email"]="please enter valid email"}
+                        "Authentication failed: There is no user record corresponding to this identifier. The user may have been deleted." -> {
+                            errormap!!["userNotfound"]="the user doesn't be founded"
+                        }
+                        "The password is invalid or the user does not have a password." -> {
+                            errormap!!["incorrect_password"]="please enter the correct password"
+                        }
 
                     }
                 }

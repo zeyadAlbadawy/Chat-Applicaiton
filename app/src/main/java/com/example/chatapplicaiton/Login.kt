@@ -25,6 +25,7 @@ class Login : AppCompatActivity() {
             insets
         }
 
+
         editEmail = findViewById(R.id.edit_email)
         editPassword = findViewById(R.id.edit_password)
         btnLogin = findViewById(R.id.btnLogin)
