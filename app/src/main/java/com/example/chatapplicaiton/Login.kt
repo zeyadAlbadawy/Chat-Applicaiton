@@ -37,6 +37,9 @@ class Login : AppCompatActivity() {
         }
         btnLogin.setOnClickListener{
             Auth(editEmail.text.toString(),editPassword.text.toString()).Log_in()
+            if (Auth.signinresponse==true){
+
+            }
 
         }
 

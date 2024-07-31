@@ -12,7 +12,8 @@ class Auth(val email : String ?,val pass :String ?) {
     private val auth = Firebase.auth
     companion object{
         var errormap :MutableMap<String,String> ?=null
-        var sinupres :Boolean?=false
+        var signupresponse :Boolean?=false
+        var signinresponse :Boolean?=false
     }
 
     fun Log_in() {
@@ -20,6 +21,7 @@ class Auth(val email : String ?,val pass :String ?) {
             auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
 
                 if (it.isSuccessful) {
+                    signupresponse=it.isSuccessful
                     Log.d("message", "success")
                 } else {
                     try {
@@ -50,8 +52,7 @@ class Auth(val email : String ?,val pass :String ?) {
     fun signup(name : String){
         auth.createUserWithEmailAndPassword(email!!,pass!!).addOnCompleteListener{
             if(it.isSuccessful){
-                sinupres=it.isSuccessful
-
+                signupresponse=it.isSuccessful
             }else{
                 pass
             }
