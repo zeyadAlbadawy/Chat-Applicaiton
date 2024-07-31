@@ -1,6 +1,7 @@
 package com.example.chatapplicaiton
 
 import android.content.Intent
+import kotlinx.coroutines.*
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.awaitAll as awaitAll1
 
 class Login : AppCompatActivity() {
     private lateinit var editEmail : EditText
@@ -40,15 +42,15 @@ class Login : AppCompatActivity() {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
             Auth(email,password).log_in()
-                val errorcode=Auth.errorcode
-            if (Auth.signinresponse==false){
+                  val errorcode=Auth.errorcode
+                  if(errorcode==null) {
+                      Toast.makeText(this, "enter the credential", Toast.LENGTH_SHORT).show()
 
-                Toast.makeText(this, errorcode.toString(), Toast.LENGTH_SHORT).show()
-
-            }
-            if(errorcode==null){
-                Toast.makeText(this, "enter the credential", Toast.LENGTH_SHORT).show()
-            }
+                  }else{
+                      Toast.makeText(this, errorcode, Toast.LENGTH_SHORT).show()
+                  }
         }
     }
+
+
 }

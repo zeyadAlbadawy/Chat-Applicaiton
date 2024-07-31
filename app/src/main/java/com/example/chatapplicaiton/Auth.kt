@@ -13,15 +13,14 @@ class Auth(val email : String ?,val pass :String ?) {
     companion object{
         var errorcode :String ?=null
         var signupresponse :Boolean=false
-        var signinresponse :Boolean?=false
     }
 
-    fun log_in() {
+    fun log_in() :
+        Unit{
         if(email!=""&&pass !="") {
             auth.signInWithEmailAndPassword(email!!, pass!!).addOnCompleteListener {
 
                 if (it.isSuccessful) {
-                    signinresponse=it.isSuccessful
                     Log.d("message", "success")
                 } else {
                     try {
