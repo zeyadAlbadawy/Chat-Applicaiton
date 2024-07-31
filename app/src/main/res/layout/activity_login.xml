@@ -47,7 +47,7 @@
         android:height="50dp"
         android:paddingStart="13dp"
         tools:ignore="RtlSymmetry" />
-    
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="150dp"

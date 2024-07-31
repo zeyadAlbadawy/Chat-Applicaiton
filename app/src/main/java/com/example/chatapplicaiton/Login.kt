@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,8 +25,8 @@ class Login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
+        supportActionBar?.hide()
+       //  mAuth = FirebaseAuth.getInstance()
         editEmail = findViewById(R.id.edit_email)
         editPassword = findViewById(R.id.edit_password)
         btnLogin = findViewById(R.id.btnLogin)
@@ -36,12 +37,18 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
         btnLogin.setOnClickListener{
-            Auth(editEmail.text.toString(),editPassword.text.toString()).Log_in()
-            if (Auth.signinresponse==true){
+            val email = editEmail.text.toString()
+            val password = editPassword.text.toString()
+            Auth(email,password).log_in()
+                val errorcode=Auth.errorcode
+            if (Auth.signinresponse==false){
+
+                Toast.makeText(this, errorcode.toString(), Toast.LENGTH_SHORT).show()
 
             }
-
+            if(errorcode==null){
+                Toast.makeText(this, "enter the credential", Toast.LENGTH_SHORT).show()
+            }
         }
-
     }
 }

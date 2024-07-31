@@ -11,17 +11,17 @@ import com.google.firebase.ktx.Firebase
 class Auth(val email : String ?,val pass :String ?) {
     private val auth = Firebase.auth
     companion object{
-        var errormap :MutableMap<String,String> ?=null
-        var signupresponse :Boolean?=false
+        var errorcode :String ?=null
+        var signupresponse :Boolean=false
         var signinresponse :Boolean?=false
     }
 
-    fun Log_in() {
-        if(email!=null&&pass !=null) {
-            auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+    fun log_in() {
+        if(email!=""&&pass !="") {
+            auth.signInWithEmailAndPassword(email!!, pass!!).addOnCompleteListener {
 
                 if (it.isSuccessful) {
-                    signupresponse=it.isSuccessful
+                    signinresponse=it.isSuccessful
                     Log.d("message", "success")
                 } else {
                     try {
@@ -30,15 +30,15 @@ class Auth(val email : String ?,val pass :String ?) {
                         val error = e.message
                         when (error) {
                             "The email address is badly formatted." -> {
-                                errormap!!["invalid_email"] = "The email address is badly formatted."
+                                errorcode = "The email address is badly formatted."
                             }
 
                             "Authentication failed: There is no user record corresponding to this identifier. The user may have been deleted." -> {
-                                errormap!!["userNotfound"] = "Authentication failed: There is no user record corresponding to this identifier. The user may have been deleted."
+                                errorcode = "Authentication failed: There is no user record corresponding to this identifier. The user may have been deleted."
                             }
 
                             "The password is invalid or the user does not have a password." -> {
-                                errormap!!["incorrect_password"] = "The password is invalid or the user does not have a password."
+                                errorcode = "The password is invalid or the user does not have a password."
                             }
 
 
