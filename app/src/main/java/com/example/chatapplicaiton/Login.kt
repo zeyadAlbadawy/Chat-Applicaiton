@@ -9,11 +9,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {
-    private lateinit var editEmail : EditText
-    private lateinit var editPassword : EditText
-    private lateinit var btnLogin : Button
+    private lateinit var editEmail: EditText
+    private lateinit var editPassword: EditText
+    private lateinit var btnLogin: Button
     private lateinit var btnSignUp: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,33 +27,41 @@ class Login : AppCompatActivity() {
             insets
         }
         supportActionBar?.hide()
-       //  mAuth = FirebaseAuth.getInstance()
+
         editEmail = findViewById(R.id.edit_email)
         editPassword = findViewById(R.id.edit_password)
         btnLogin = findViewById(R.id.btnLogin)
         btnSignUp = findViewById(R.id.btnSignUp)
 
-        btnSignUp.setOnClickListener{
+        btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
-        btnLogin.setOnClickListener{
+
+        btnLogin.setOnClickListener {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
-            login(email,password);
+            login(email, password)
         }
+    }
+
+    private fun login(email: String, password: String) {
+        val mAuth = FirebaseAuth.getInstance()
+
+        // Authenticate user with email and password
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                // User successfully logged in
+                val intent = Intent(this@Login, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                // Handle login failure
+                Toast.makeText(this@Login, "Login failed. Please check your credentials.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
 
-    }
-    private fun login(email: String, password: String){
-        //logic for logging user
-      //  mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this) { task ->
-           // if (task.isSuccessful) {
-          //      val intent = Intent(this@Login, MainActivity::class.java)
-         //       startActivity(intent)
-         //   } else {
-         //       Toast.makeText(this@Login, "some error occurred", Toast.LENGTH_SHORT).show()
-         //   }
-       // }
-    }
+
 }
