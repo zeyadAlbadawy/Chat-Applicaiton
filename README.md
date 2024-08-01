@@ -30,7 +30,6 @@ This project is a basic chat application implemented in Kotlin. It includes both
    
 
 
-
-   ![Screenshot_20240802_021009](https://github.com/user-attachments/assets/cef85c0d-0db4-4aea-8638-b87405cd4a60)
+![Screenshot_20240802_021009](https://github.com/user-attachments/assets/cef85c0d-0db4-4aea-8638-b87405cd4a60)
 
 
