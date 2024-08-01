@@ -11,10 +11,10 @@
         android:id="@+id/app_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:contentDescription="@string/simple_logo"
-        android:src="@drawable/chat"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp" />
+        android:layout_marginTop="70dp"
+        android:contentDescription="@string/simple_logo"
+        android:src="@drawable/chat" />
 
     <EditText
 
@@ -22,14 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/app_logo"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:hint="@string/email"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
+        android:autofillHints=""
+        android:background="@drawable/edit_background"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
-        android:background="@drawable/edit_background"
         tools:ignore="RtlSymmetry" />
 
     <EditText
@@ -50,12 +50,15 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_password"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="17dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="163dp"
         android:orientation="horizontal">
@@ -98,29 +101,48 @@
         android:id="@+id/incorrectpass"
         android:layout_width="387dp"
         android:layout_height="30dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/edit_password"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="439dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="262dp"
+        android:layout_marginBottom="259dp"
         android:textColor="#E40808"
         android:textSize="20dp"
         android:visibility="invisible" />
 
-    <CheckedTextView
-        android:id="@+id/resetpassword"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edit_password"
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="387dp"
+        android:layout_height="30dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="408dp"
-        android:layout_marginBottom="296dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="609dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="92dp"
+        android:textColor="#E40808"
+        android:textSize="20dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/resetpassword"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/incorrectpass"
+        android:layout_below="@+id/edit_password"
+        android:layout_alignStart="@+id/incorrectpass"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="-30dp"
+        android:paddingVertical="0dp"
         android:text="@string/resetpassword"
+        android:textAlignment="textStart"
         android:textColor="#000000"
         android:textSize="20dp" />
 

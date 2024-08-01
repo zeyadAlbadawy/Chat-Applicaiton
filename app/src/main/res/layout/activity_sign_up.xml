@@ -80,4 +80,17 @@
         android:layout_marginTop="30dp"
         />
 
+    <TextView
+        android:id="@+id/errorview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignUp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="195dp"
+        android:text="TextView"
+        android:textColor="#E40B0B"
+        android:textSize="20dp"
+        android:visibility="invisible" />
+
 </RelativeLayout>

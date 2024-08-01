@@ -3,6 +3,7 @@ package com.example.chatapplicaiton
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,7 +18,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var editEmail : EditText
     private lateinit var editPassword : EditText
     private lateinit var btnSignUp: Button
-
+    private lateinit var view: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,6 +26,7 @@ class SignUp : AppCompatActivity() {
 
         supportActionBar?.hide()
        // mAuth = FirebaseAuth.getInstance()
+        view=findViewById(android.R.id.content)
         editEmail = findViewById(R.id.edit_email)
         editPassword = findViewById(R.id.edit_password)
         editName = findViewById(R.id.edit_name)
@@ -33,6 +35,7 @@ class SignUp : AppCompatActivity() {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
             val name : String=editName.text.toString()
+            Auth(email,password,this).signup(view)
 
         }
 

@@ -14,6 +14,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.awaitAll as awaitAll1
 
@@ -22,7 +25,9 @@ class Login : AppCompatActivity() {
     private lateinit var editPassword : EditText
     private lateinit var btnLogin : Button
     private lateinit var btnSignUp: Button
+    private lateinit var resetpass: Button
     private lateinit var view: View
+    private lateinit var auth : FirebaseAuth
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +41,18 @@ class Login : AppCompatActivity() {
         }
         view=findViewById(android.R.id.content)
         supportActionBar?.hide()
+        resetpass = view.findViewById(R.id.resetpassword)
+        resetpass.setOnClickListener{
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+
+        }
        //  mAuth = FirebaseAuth.getInstance()
         editEmail = findViewById(R.id.edit_email)
         editPassword = findViewById(R.id.edit_password)
         btnLogin = findViewById(R.id.btnLogin)
         btnSignUp = findViewById(R.id.btnSignUp)
-
+        auth= Firebase.auth
         btnSignUp.setOnClickListener{
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
@@ -49,7 +60,7 @@ class Login : AppCompatActivity() {
         btnLogin.setOnClickListener{
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
-                  Auth(email,password).log_in(view = view,this)
+                  Auth(email,password,this).log_in(view = view)
 
         }
     }
