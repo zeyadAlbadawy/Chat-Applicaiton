@@ -6,4 +6,8 @@
     <string name="log_in">Log in</string>
     <string name="SignUp">SignUp</string>
     <string name="name">name</string>
+    <string name="incorrectemail">please enter the correct email</string>
+    <string name="btnSignUp">Sign Up</string>
+    <string name="incorrectpass" />
+    <string name="resetpassword">forget password</string>
 </resources>

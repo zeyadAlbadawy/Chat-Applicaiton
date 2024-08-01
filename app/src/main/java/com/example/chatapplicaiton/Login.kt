@@ -1,15 +1,20 @@
 package com.example.chatapplicaiton
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import kotlinx.coroutines.*
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.awaitAll as awaitAll1
 
 class Login : AppCompatActivity() {
@@ -17,7 +22,9 @@ class Login : AppCompatActivity() {
     private lateinit var editPassword : EditText
     private lateinit var btnLogin : Button
     private lateinit var btnSignUp: Button
+    private lateinit var view: View
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,6 +34,7 @@ class Login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        view=findViewById(android.R.id.content)
         supportActionBar?.hide()
        //  mAuth = FirebaseAuth.getInstance()
         editEmail = findViewById(R.id.edit_email)
@@ -41,14 +49,8 @@ class Login : AppCompatActivity() {
         btnLogin.setOnClickListener{
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
-            Auth(email,password).log_in()
-                  val errorcode=Auth.errorcode
-                  if(errorcode==null) {
-                      Toast.makeText(this, "enter the credential", Toast.LENGTH_SHORT).show()
+                  Auth(email,password).log_in(view = view,this)
 
-                  }else{
-                      Toast.makeText(this, errorcode, Toast.LENGTH_SHORT).show()
-                  }
         }
     }
 
