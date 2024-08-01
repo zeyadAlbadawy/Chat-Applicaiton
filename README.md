@@ -20,7 +20,7 @@ This project is a basic chat application implemented in Kotlin. It includes both
 
 
    ![Screenshot_20240802_020733](https://github.com/user-attachments/assets/f016f721-a5fb-4e23-8769-eda243df7cf6)
-
+ 
   
 
 # Register Page
