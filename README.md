@@ -15,7 +15,7 @@ This project is a basic chat application implemented in Kotlin. It includes both
 
 # Login Page
 
--Once We Open The App, You Have Two Options either to loggin for registered useres or to register if you done have an account. It looks like that.
+-Once We Open The App, You Have Two Options either to loggin for registered useres or to register if you don't have an account. It looks like that.
 
 
 
