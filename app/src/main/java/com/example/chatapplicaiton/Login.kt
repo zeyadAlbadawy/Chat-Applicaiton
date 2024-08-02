@@ -61,6 +61,9 @@ class Login : AppCompatActivity() {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
                   Auth(email,password,this).log_in(view = view)
+            if (auth.currentUser!!.isEmailVerified){
+                Database().loginupdate()
+            }
 
         }
     }

@@ -72,7 +72,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
 
     }
     @SuppressLint("SuspiciousIndentation")
-    fun signup(view: View){
+    fun signup(view: View, username: String){
         val errormessage=view.findViewById<TextView>(R.id.errorview)
         val name : TextView=view.findViewById(R.id.edit_name)
         if (name.text.length>=5){
@@ -80,7 +80,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
             val sub1=email.substring(0,email.indexOf("@"))
                 if(sub1.length >=5){
                     println("================================")
-                    strongpass(pass.toString(),view)
+                    strongpass(pass.toString(),view,username)
                 }
             }else{
                 errormessage.text="please enter valid email"
@@ -93,7 +93,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
 
     }
 
-    fun strongpass(password : String, view: View){
+    fun strongpass(password : String, view: View,name: String){
             val errormessage=view.findViewById<TextView>(R.id.errorview)
         val specialchars = arrayOf("!","@","#","$","%","^","&","*","(",")","_")
         var count : Int=0

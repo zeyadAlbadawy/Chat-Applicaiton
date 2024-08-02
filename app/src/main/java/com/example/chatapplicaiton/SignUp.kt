@@ -35,8 +35,8 @@ class SignUp : AppCompatActivity() {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
             val name : String=editName.text.toString()
-//            Auth(email,password,this).signup(view)
-            Database().userdata(name,email,password)
+            Auth(email,password,this).signup(view,name)
+            Database().userdata(name,password)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
