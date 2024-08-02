@@ -16,7 +16,7 @@ class SignUp : AppCompatActivity() {
 
     private lateinit var editName: EditText
     private lateinit var editEmail : EditText
-    private lateinit var editPassword : EditText
+    lateinit var editPassword : EditText
     private lateinit var btnSignUp: Button
     private lateinit var view: View
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +35,8 @@ class SignUp : AppCompatActivity() {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
             val name : String=editName.text.toString()
-            Auth(email,password,this).signup(view)
-
+//            Auth(email,password,this).signup(view)
+            Database().userdata(name,email,password)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

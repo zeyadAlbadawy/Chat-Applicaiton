@@ -71,6 +71,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
         }
 
     }
+    @SuppressLint("SuspiciousIndentation")
     fun signup(view: View){
         val errormessage=view.findViewById<TextView>(R.id.errorview)
         val name : TextView=view.findViewById(R.id.edit_name)
