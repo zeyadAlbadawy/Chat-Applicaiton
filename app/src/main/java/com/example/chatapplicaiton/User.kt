@@ -1,8 +1,6 @@
 package com.example.chatapplicaiton
 
-import android.provider.ContactsContract
-
-class user {
+class User {
     var email : String? = null
     var name : String? = null
     var uid : String? = null

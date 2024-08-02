@@ -1,15 +1,11 @@
 package com.example.chatapplicaiton
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import kotlinx.coroutines.*
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,8 +13,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import kotlin.system.measureTimeMillis
-import kotlinx.coroutines.awaitAll as awaitAll1
 
 class Login : AppCompatActivity() {
     private lateinit var editEmail : EditText
@@ -41,9 +35,9 @@ class Login : AppCompatActivity() {
         }
         view=findViewById(android.R.id.content)
         supportActionBar?.hide()
-        resetpass = view.findViewById(R.id.resetpassword)
+        resetpass = view.findViewById(R.id.sendemail)
         resetpass.setOnClickListener{
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,Resetpassword::class.java)
             startActivity(intent)
 
         }
@@ -61,9 +55,6 @@ class Login : AppCompatActivity() {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
                   Auth(email,password,this).log_in(view = view)
-            if (auth.currentUser!!.isEmailVerified){
-                Database().loginupdate()
-            }
 
         }
     }

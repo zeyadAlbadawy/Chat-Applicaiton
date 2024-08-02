@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Context
 
-class User_Adapter(val context: Context, val userList: ArrayList<user>) :
+class User_Adapter(val context: Context, val userList: ArrayList<User>) :
     RecyclerView.Adapter<User_Adapter.UserViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view : View = LayoutInflater.from(context).inflate(R.layout.user_layout, parent , false)

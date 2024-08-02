@@ -32,11 +32,13 @@ class SignUp : AppCompatActivity() {
         editName = findViewById(R.id.edit_name)
         btnSignUp = findViewById(R.id.btnSignUp)
         btnSignUp.setOnClickListener{
-            val email = editEmail.text.toString()
-            val password = editPassword.text.toString()
-            val name : String=editName.text.toString()
-            Auth(email,password,this).signup(view,name)
-            Database().userdata(name,password)
+//            val email = editEmail.text.toString()
+//            val password = editPassword.text.toString()
+//            val name : String=editName.text.toString()
+//            Auth(email,password,this).signup(view,name)
+//            Database().userdata(name,password)
+            val intent =Intent(this,User::class.java)
+            startActivity(intent)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

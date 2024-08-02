@@ -32,9 +32,9 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
         }
         else {
             auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                var vis: Boolean = false
                 if (it.isSuccessful) {
                     if(auth.currentUser!!.isEmailVerified){
+                    Database().loginupdate()
                     val  intent =Intent(context,MainActivity ::class.java)
                     context.startActivity(intent)
                     }else{
