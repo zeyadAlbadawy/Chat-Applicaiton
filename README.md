@@ -1,5 +1,3 @@
-# Chat Application
-
 ## Overview
 
 This project is a basic chat application implemented in Kotlin. It includes both a server and client that allows multiple users to communicate in real-time. The server manages the connections and broadcasts messages to all connected clients.
@@ -14,17 +12,24 @@ This project is a basic chat application implemented in Kotlin. It includes both
 - **Server**: Manages client connections and message broadcasting.
 - **Client**: Connects to the server and allows users to send and receive messages.
 
-## It Consists Of 
-# Register Page
-
-- Looks Like that Which Allow Non-Registered Users To Enter Their credentials 
-
-     ![dw](https://github.com/user-attachments/assets/57d2722e-c41c-4535-a619-9c0dc2424811)
-
-
 
 # Login Page
 
-- If the User Has An account then, Tab to login and enter your credentials 
+-Once We Open The App, You Have Two Options either to logg in for registered users or to register if you don't have an account. It looks like that.
 
-     ![req](https://github.com/user-attachments/assets/dd6be61d-c483-4203-9ecb-0dbd43623646)
+
+
+
+   ![Screenshot_20240802_020733](https://github.com/user-attachments/assets/f016f721-a5fb-4e23-8769-eda243df7cf6)
+ 
+  
+
+# Register Page
+
+- Looks Like that Which Allow Non-Registered Users To Enter Their credentials 
+   
+
+
+![Screenshot_20240802_021009](https://github.com/user-attachments/assets/cef85c0d-0db4-4aea-8638-b87405cd4a60)
+
+
