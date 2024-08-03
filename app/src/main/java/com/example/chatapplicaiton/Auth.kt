@@ -64,8 +64,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
         val errormessage=view.findViewById<TextView>(R.id.errorview)
         val name : TextView=view.findViewById(R.id.edit_name)
         if (name.text.length>=5){
-            if(email!!.endsWith("@gmail.com")){
-            val sub1=email.substring(0,email.indexOf("@"))
+            if(email!!.endsWith("@gmail.com")){ val sub1=email.substring(0,email.indexOf("@"))
                 if(sub1.length >=5){
                     println("================================")
                     strongpass(pass.toString(),view,username)
@@ -98,7 +97,8 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
                     context.startActivity(intent)
                 }
             }else{
-                errormessage.text="password must have at least one character"
+                // tell the user what's need in a specific way
+                errormessage.text="password must have at least one Special character"
                 errormessage.visibility=View.VISIBLE
             }
         }
