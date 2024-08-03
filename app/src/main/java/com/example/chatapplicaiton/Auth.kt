@@ -93,6 +93,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
                 auth.createUserWithEmailAndPassword(email!!, pass!!).addOnCompleteListener {
                     auth.currentUser!!.sendEmailVerification()
                     Toast.makeText(context,"please check inbox to verify your email",Toast.LENGTH_SHORT).show()
+                    Database().userdata(name,password,email)
                     val intent=Intent(context,Login :: class.java)
                     context.startActivity(intent)
                 }
