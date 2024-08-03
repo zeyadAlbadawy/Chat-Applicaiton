@@ -75,8 +75,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
         val errormessage=view.findViewById<TextView>(R.id.errorview)
         val name : TextView=view.findViewById(R.id.edit_name)
         if (name.text.length>=5){
-            if(email!!.endsWith("@gmail.com")){
-            val sub1=email.substring(0,email.indexOf("@"))
+            if(email!!.endsWith("@gmail.com")){ val sub1=email.substring(0,email.indexOf("@"))
                 if(sub1.length >=5){
                     println("================================")
                     strongpass(pass.toString(),view)

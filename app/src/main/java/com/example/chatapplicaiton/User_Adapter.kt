@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Context
+import android.content.Intent
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 
 class User_Adapter(val context: Context, val userList: ArrayList<user>) :
     RecyclerView.Adapter<User_Adapter.UserViewHolder>() {
@@ -17,6 +20,13 @@ class User_Adapter(val context: Context, val userList: ArrayList<user>) :
     override fun onBindViewHolder(holder:UserViewHolder, position: Int) {
      val currentUser = userList[position]
         holder.textName.text = currentUser.name
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, ChatActivity::class.java)
+                .putExtra("name",currentUser.name)
+                .putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
+
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

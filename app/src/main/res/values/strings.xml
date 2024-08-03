@@ -10,4 +10,5 @@
     <string name="btnSignUp">Sign Up</string>
     <string name="incorrectpass" />
     <string name="resetpassword">forget password</string>
+    <string name="message_box_hint">Press and Type a Message</string>
 </resources>
