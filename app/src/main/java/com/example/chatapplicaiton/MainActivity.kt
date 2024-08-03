@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() , ItemClickListener{
+class MainActivity : AppCompatActivity(){
         val list = arrayListOf<User>(
             User("karim","karim@gmail.com","2352664"),
             User("karim","karim@gmail.com","2352664"),
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() , ItemClickListener{
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val customAdapter = User_Adapter(this, list,this)
+        val customAdapter = User_Adapter(this, list)
         val recyclerView: RecyclerView = findViewById(R.id.recycleview)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = customAdapter
@@ -41,7 +41,4 @@ class MainActivity : AppCompatActivity() , ItemClickListener{
 
     }
 
-    override fun onItemClick(position: Int) {
-        Toast.makeText(this, "Clicked: ${list[position]}", Toast.LENGTH_SHORT).show()
-    }
 }
