@@ -2,6 +2,8 @@ package com.example.chatapplicaiton
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,7 +11,15 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , ItemClickListener{
+        val list = arrayListOf<User>(
+            User("karim","karim@gmail.com","2352664"),
+            User("karim","karim@gmail.com","2352664"),
+            User("karim","karim@gmail.com","2352664"),
+            User("karim","karim@gmail.com","2352664"),
+            User("karim","karim@gmail.com","2352664"),
+            User("karim","karim@gmail.com","2352664"),
+        )
     @SuppressLint("WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,18 +30,18 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val list = arrayListOf<User>(
-            User("karim","karim@gmail.com","2352664"),
-            User("karim","karim@gmail.com","2352664"),
-            User("karim","karim@gmail.com","2352664"),
-            User("karim","karim@gmail.com","2352664"),
-            User("karim","karim@gmail.com","2352664"),
-            User("karim","karim@gmail.com","2352664"),
-        )
-        val customAdapter = User_Adapter(this, list)
+        val customAdapter = User_Adapter(this, list,this)
         val recyclerView: RecyclerView = findViewById(R.id.recycleview)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = customAdapter
+        val lview = findViewById<RecyclerView>(R.id.recycleview)
+        lview.setOnClickListener{
+            Toast.makeText(this,"karim", Toast.LENGTH_SHORT).show()
+        }
 
+    }
+
+    override fun onItemClick(position: Int) {
+        Toast.makeText(this, "Clicked: ${list[position]}", Toast.LENGTH_SHORT).show()
     }
 }
