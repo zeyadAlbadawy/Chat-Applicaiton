@@ -12,7 +12,7 @@ This project is a basic chat application implemented in Kotlin. It includes both
 - **Server**: Manages client connections and message broadcasting.
 - **Client**: Connects to the server and allows users to send and receive messages.
 
-
+ideaidea
 # Login Page
 
 -Once We Open The App, You Have Two Options either to logg in for registered users or to register if you don't have an account. It looks like that.

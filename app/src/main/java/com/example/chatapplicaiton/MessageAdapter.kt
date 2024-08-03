@@ -1,13 +1,10 @@
 package com.example.chatapplicaiton
-import Message
 import android.content.Context
-import android.icu.text.Transliterator.Position
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chatapplicaiton.User_Adapter.UserViewHolder
 import com.google.firebase.auth.FirebaseAuth
 
 class MessageAdapter(val context : Context, val messageList : ArrayList<Message>):

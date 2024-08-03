@@ -112,7 +112,8 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
 
 
             }else{
-                errormessage.text="password must have at least one character"
+                // tell the user what's need in a specific way
+                errormessage.text="password must have at least one Special character"
                 errormessage.visibility=View.VISIBLE
             }
         }
