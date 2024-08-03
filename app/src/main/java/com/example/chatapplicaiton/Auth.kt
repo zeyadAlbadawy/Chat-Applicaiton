@@ -14,7 +14,6 @@ import kotlinx.coroutines.delay
 
 class Auth(val email : String ?,val pass :String ?,val context: Context) {
     private val auth = Firebase.auth
-
     @SuppressLint("SetTextI18n")
     fun log_in(view: View) : Unit{
         val errormail :TextView = view.findViewById(R.id.incorrectemail)
@@ -28,7 +27,6 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
         {
             empty.text="please enter the empty field"
             empty.visibility=View.VISIBLE
-            println("=============================")
         }
         else {
             auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
@@ -42,34 +40,24 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
                     }
                     Log.d("message", "success")
                 } else {
-
                     val error = it.exception!!.message.toString()
                     println("===================$error")
                     when (error) {
                         "The email address is badly formatted." -> {
                             errormail.visibility=View.VISIBLE
                         }
-
                         "There is no user record corresponding to this identifier. The user may have been deleted." -> {
 
                             errormail.visibility=View.VISIBLE
                         }
-
                         "The password is invalid or the user does not have a password." -> {
                            errorpass.text="please enter the correct password"
                             errorpass.visibility=View.VISIBLE
-                            println("heloooooooooooooooooooooooo")
                         }
-
-
                     }
-                    print("================================")
-
                 }
             }
-
         }
-
     }
     @SuppressLint("SuspiciousIndentation")
     fun signup(view: View, username: String){
@@ -92,7 +80,6 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
         }
 
     }
-
     fun strongpass(password : String, view: View,name: String){
             val errormessage=view.findViewById<TextView>(R.id.errorview)
         val specialchars = arrayOf("!","@","#","$","%","^","&","*","(",")","_")
@@ -101,7 +88,6 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
             for (i in password) {
                 if (specialchars.contains(i.toString())) {
                     count += 1
-
                 }
             }
             if (count >= 1) {
@@ -111,14 +97,11 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
                     val intent=Intent(context,Login :: class.java)
                     context.startActivity(intent)
                 }
-
-
             }else{
                 errormessage.text="password must have at least one character"
                 errormessage.visibility=View.VISIBLE
             }
         }
-
         else{
             errormessage.text="password must have at least9 numbers and one character"
             errormessage.visibility=View.VISIBLE

@@ -10,19 +10,21 @@ import android.content.Context
 class User_Adapter(val context: Context, val userList: ArrayList<User>) :
     RecyclerView.Adapter<User_Adapter.UserViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view : View = LayoutInflater.from(context).inflate(R.layout.user_layout, parent , false)
+        val view : View = LayoutInflater.from(context).inflate(R.layout.list_item, parent , false)
         return UserViewHolder(view)
     }
 
     override fun onBindViewHolder(holder:UserViewHolder, position: Int) {
      val currentUser = userList[position]
-        holder.textName.text = currentUser.name
+        holder.nameview.text = currentUser.name
+        holder.emailview.text = currentUser.email
     }
 
     override fun getItemCount(): Int {
        return userList.size
     }
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val textName = itemView.findViewById<TextView>(R.id.txt_name)
+        val nameview=itemView.findViewById<TextView>(R.id.nameview)
+        val emailview=itemView.findViewById<TextView>(R.id.emailview)
     }
 }
