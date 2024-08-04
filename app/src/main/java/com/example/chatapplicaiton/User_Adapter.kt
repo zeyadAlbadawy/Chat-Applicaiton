@@ -19,7 +19,7 @@ class User_Adapter(val context: Context, val userList: ArrayList<User>) :
         holder.nameview.text = currentUser.name
         holder.emailview.text = currentUser.email
         holder.itemView.setOnClickListener{
-                val intent = Intent(context, Setting::class.java)
+                val intent = Intent(context, ChatActivity::class.java)
                     .putExtra("name",currentUser.name)
                     .putExtra("email",currentUser.email)
                 context.startActivity(intent)
