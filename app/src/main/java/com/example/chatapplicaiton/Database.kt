@@ -2,15 +2,19 @@ package com.example.chatapplicaiton
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.values
 import com.google.firebase.database.snapshots
 import com.google.firebase.database.values
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
+import java.lang.reflect.Type
 
 class Database {
     private val auth = Firebase.auth
@@ -30,16 +34,33 @@ class Database {
     fun loginupdate(){
         database.child("User").child(auth.currentUser!!.uid).updateChildren(hashMapOf<String,Any>("is email verified" to auth.currentUser!!.isEmailVerified))
     }
-    fun getdata() : ArrayList<Task<DataSnapshot>> {
+fun getdata() : Map<String,ArrayList<String>>{
+
+        var  listname = ArrayList<String>()
+        var  listemail = ArrayList<String>()
         println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet")
-        val mapdata= arrayListOf(database.child("User").get().addOnSuccessListener { println(
-            "======================"
-        )
-        println(it)
+        val dataref= database.child("User")
+        dataref.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+                println(error.message)
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listname.clear()
+                listemail.clear()
+                     val snap= snapshot.getValue() as Map<String,Map<String,*>>
+                val children = snapshot.children
+                        var mp = snap.values
+                for (i in mp){
+                    listname.add(i["name"].toString())
+                    listemail.add(i["email"].toString())
+                }
+                    println(listemail)
+                    println(listname)
+
+
+            }
+        })
+        return mapOf<String,ArrayList<String>>("name" to listname,"email" to listemail)
         }
-            .addOnFailureListener{
-                it.printStackTrace()
-            })
-        return mapdata
-    }
 }

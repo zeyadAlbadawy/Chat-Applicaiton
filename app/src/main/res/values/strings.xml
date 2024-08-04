@@ -55,4 +55,5 @@
     <string name="edit_email">please enter your email</string>
     <string name="btnreset">Reset password</string>
     <string name="message_box_hint">Enter message</string>
+    <string name="logoutbtn">Log Out</string>
 </resources>
