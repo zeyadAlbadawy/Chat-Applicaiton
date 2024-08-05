@@ -39,6 +39,7 @@ fun getdata() : Map<String,ArrayList<String>>{
 
         var  listname = ArrayList<String>()
         var  listemail = ArrayList<String>()
+        var  listuid = ArrayList<String>()
         println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet")
         val dataref= database.child("User")
         dataref.addListenerForSingleValueEvent(object :ValueEventListener{
@@ -50,7 +51,9 @@ fun getdata() : Map<String,ArrayList<String>>{
                 listname.clear()
                 listemail.clear()
                      val snap= snapshot.getValue() as Map<String,Map<String,*>>
-                val children = snapshot.children
+                for (i in snap.keys.toList()){
+                    listuid.add(i.toString())
+                }
                         var mp = snap.values
                 for (i in mp){
                     listname.add(i["name"].toString())
@@ -58,10 +61,11 @@ fun getdata() : Map<String,ArrayList<String>>{
                 }
                     println(listemail)
                     println(listname)
+                    println(listuid)
 
 
             }
         })
-        return mapOf<String,ArrayList<String>>("name" to listname,"email" to listemail)
+        return mapOf<String,ArrayList<String>>("name" to listname,"email" to listemail,"uid" to listuid)
         }
 }

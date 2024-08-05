@@ -58,13 +58,14 @@ class MainActivity : AppCompatActivity() {
     private fun ordereddata() {
             val data = Database().getdata()
         lifecycleScope.launch {
-            delay(1500)
+            delay(2000)
 
             val names = data["name"] ?: emptyList()
             val emails = data["email"] ?: emptyList()
+            val uid = data["uid"] ?: emptyList()
             withContext(Dispatchers.Default) {
-                for (i in 0 until names.size) {
-                    list.add(User(names[i], emails[i],""))
+                for (i in 0 until uid.size) {
+                    list.add(User(names[i], emails[i],uid[i]))
                 }
             }
             withContext(Dispatchers.Main) {

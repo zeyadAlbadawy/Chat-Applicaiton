@@ -37,11 +37,11 @@ class MessageAdapter(val context : Context, val messageList : ArrayList<Message>
         {
 
             val viewHolder = holder as SentViewHolder
-            holder.sentMessage.text = currentMessage.message
+            viewHolder.sentMessage.text = currentMessage.message
         }
         else{
             val viewHolder = holder as ReceiveViewHolder
-            holder.receiveMessage.text=currentMessage.message
+            viewHolder.receiveMessage.text=currentMessage.message
         }
 
 
@@ -49,6 +49,7 @@ class MessageAdapter(val context : Context, val messageList : ArrayList<Message>
     }
 
     override fun getItemCount(): Int {
+        println("=====================${messageList}")
         return messageList.size
 
     }
