@@ -31,7 +31,9 @@ class Resetpassword : AppCompatActivity() {
         resetbtn=findViewById(R.id.btnreset)
         sendemail=findViewById(R.id.sendemail)
         resetbtn.setOnClickListener{
-            auth.sendPasswordResetEmail(sendemail.text.toString())
+            auth.sendPasswordResetEmail(sendemail.text.toString()).addOnCompleteListener {
+
+            }
             Toast.makeText(this,"please check inbox to reset password",Toast.LENGTH_SHORT).show()
         }
 

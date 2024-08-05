@@ -1,6 +1,9 @@
 package com.example.chatapplicaiton
 
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,6 +21,8 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var mDbRef: DatabaseReference
     private lateinit var senderNode: String
     private lateinit var receiverNode: String
+    private lateinit var sendbutton : ImageView
+    private lateinit var messagebox :EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +33,8 @@ class ChatActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        messageList = ArrayList()
+        messageAdapter= MessageAdapter(this,messageList)
         // Initialize Firebase Database reference
         mDbRef = FirebaseDatabase.getInstance().reference
 
@@ -43,10 +49,19 @@ class ChatActivity : AppCompatActivity() {
         // Initialize RecyclerView and adapter
         messagesRecycler = findViewById(R.id.messages)
         messagesRecycler.layoutManager = LinearLayoutManager(this)
-        messageList = ArrayList()
+
         messageAdapter = MessageAdapter(this, messageList)
         messagesRecycler.adapter = messageAdapter
+        sendbutton =findViewById(R.id.sendBtn)
+        messagebox=findViewById(R.id.messageBox)
+        sendbutton.setOnClickListener{
+            val message=messagebox.text.toString()
+            val messageobject=Message(message,senderUid)
+            mDbRef.child("chats").child(senderNode).child("messages").push().setValue(messageobject).addOnSuccessListener {
+                mDbRef.child("chats").child(receiverNode).child("messages").push().setValue(messageobject)
 
+            }
+        }
         // Listen for new messages in the database
         mDbRef.child("chats").child(senderNode).child("messages")
             .addValueEventListener(object : ValueEventListener {

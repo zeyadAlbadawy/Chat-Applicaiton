@@ -32,6 +32,7 @@ class Database {
     }
     @Exclude
     fun loginupdate(){
+        println(auth.currentUser!!.uid)
         database.child("User").child(auth.currentUser!!.uid).updateChildren(hashMapOf<String,Any>("is email verified" to auth.currentUser!!.isEmailVerified))
     }
 fun getdata() : Map<String,ArrayList<String>>{

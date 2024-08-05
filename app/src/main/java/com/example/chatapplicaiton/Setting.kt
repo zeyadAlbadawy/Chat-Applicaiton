@@ -27,8 +27,9 @@ class Setting : AppCompatActivity() {
         auth= Firebase.auth
         logoutbtn.setOnClickListener{
             auth.signOut()
-            val intent =Intent(this,Login::class.java)
+            val intent =Intent(this,Login::class.java).setAction("finish_activity")
             startActivity(intent)
+            finishAffinity()
         }
     }
 }

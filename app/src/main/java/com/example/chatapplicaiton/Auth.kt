@@ -9,10 +9,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class Auth(val email : String ?,val pass :String ?,val context: Context) {
+    private var database = FirebaseDatabase.getInstance().getReference()
     private val auth = Firebase.auth
     @SuppressLint("SetTextI18n")
     fun log_in(view: View) : Unit{
@@ -33,8 +37,14 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
                 if (it.isSuccessful) {
                     if(auth.currentUser!!.isEmailVerified){
                     Database().loginupdate()
-                    val  intent =Intent(context,MainActivity ::class.java)
-                    context.startActivity(intent)
+                        val userpass= database.child("User").child(auth.currentUser!!.uid).child("password").get().addOnCompleteListener{
+                            if(it.toString() !=pass){
+                                database.child("User").child(auth.currentUser!!.uid).child("password").setValue(pass)
+                            }
+                        }
+                            val intent = Intent(context, MainActivity::class.java)
+                            context.startActivity(intent)
+
                     }else{
                         Toast.makeText(context,"please check inbox and verfy your email",Toast.LENGTH_SHORT).show()
                     }
@@ -94,6 +104,7 @@ class Auth(val email : String ?,val pass :String ?,val context: Context) {
                     auth.currentUser!!.sendEmailVerification()
                     Toast.makeText(context,"please check inbox to verify your email",Toast.LENGTH_SHORT).show()
                     Database().userdata(name,password,email)
+
                     val intent=Intent(context,Login :: class.java)
                     context.startActivity(intent)
                 }
