@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var searchbtn: ImageButton
     lateinit var settingbtn :ImageButton
     lateinit var customAdapter: User_Adapter
+    companion object {
         var list = ArrayList<User>()
+    }
     @SuppressLint("WrongViewCast", "MissingInflatedId", "CutPasteId", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         searchbtn = findViewById(R.id.searchbtn)
         settingbtn = findViewById(R.id.settingbtn)
+        searchbtn.setOnClickListener{
+            val intent=Intent(this,Search::class.java)
+            startActivity(intent)
+        }
         settingbtn.setOnClickListener {
             val intent=Intent(this,Setting::class.java)
             startActivity(intent)
@@ -53,7 +59,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = customAdapter
         ordereddata()
     }
-
     @SuppressLint("NotifyDataSetChanged")
     private fun ordereddata() {
             val data = Database().getdata()

@@ -1,14 +1,18 @@
 package com.example.chatapplicaiton
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.inputmethodservice.Keyboard
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -52,6 +56,8 @@ class ChatActivity : AppCompatActivity() {
         receiverNode = "$senderUid$receiverUid"
         // Initialize RecyclerView and adapter
         sendbutton =findViewById(R.id.sendBtn)
+                    val userbar=findViewById<TextView>(R.id.userbar)
+                    userbar.text=intent.getStringExtra("name",)
         messagebox=findViewById(R.id.messageBox)
         mDbRef.child("chats").child(senderNode).child("messages")
             .addValueEventListener(object : ValueEventListener {
