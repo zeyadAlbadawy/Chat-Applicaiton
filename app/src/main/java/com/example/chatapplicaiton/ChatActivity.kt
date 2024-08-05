@@ -70,12 +70,14 @@ class ChatActivity : AppCompatActivity() {
                     // Handle error
                 }
             })
-
         sendbutton.setOnClickListener{
             val message=messagebox.text.toString()
             val messageobject=Message(message,senderUid)
             mDbRef.child("chats").child(senderNode).child("messages").push().setValue(messageobject).addOnSuccessListener {
-                mDbRef.child("chats").child(receiverNode).child("messages").push().setValue(messageobject)
+                if(senderNode!=receiverNode) {
+
+                    mDbRef.child("chats").child(receiverNode).child("messages").push().setValue(messageobject)
+                }
 
             }
             messagebox.setText("")
