@@ -57,6 +57,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.kotlinx.coroutines.core)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.storage)
 
 }
 
