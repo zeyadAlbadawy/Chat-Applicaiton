@@ -1,13 +1,31 @@
 package com.example.chatapplicaiton
 
+import MemoryCache
+import android.content.Context
+import android.net.Uri
+import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
-import com.google.firebase.storage.storage
 
 class Storage {
-    private lateinit var storage: FirebaseStorage
-    fun storeimage(){
-        storage= Firebase.storage("gs://chat-application-8a1d7.appspot.com/userimage/")
+    private lateinit var storage: StorageReference
+    private lateinit var auth: FirebaseAuth
+    fun uploadimage(uri: Uri,view: View,context: Context){
+        storage= Firebase.storage.reference
+        storage.child("userimage").child(auth.currentUser!!.uid).putFile(uri).addOnSuccessListener {
+         Toast.makeText(context,"image added successfully",Toast.LENGTH_SHORT).show()
+            MemoryCache<String,Uri>(1024*1024).put("myimage",uri)
+        }.addOnFailureListener{
+            println("=======================Fail")
+            view.findViewById<ImageView>(R.id.addedimage).setImageResource(R.drawable.user)
+        }
     }
+    fun getimage(){
+
+    }
+
 }
