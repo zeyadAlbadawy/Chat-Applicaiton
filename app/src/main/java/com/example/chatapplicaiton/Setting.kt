@@ -31,6 +31,12 @@ class Setting : AppCompatActivity() {
             Storage().uploadimage(it,view,this)
             println("=============${it.path}")
             userimage.setImageURI(it)
+            for(i in 0..MainActivity.list.size-1){
+                if (MainActivity.list[i].uid==auth.currentUser!!.uid){
+                    MainActivity.list[i].iamgeurl=it
+                    MainActivity.customAdapter.notifyItemChanged(i)
+                }
+            }
         }
     }
     @RequiresApi(Build.VERSION_CODES.P)

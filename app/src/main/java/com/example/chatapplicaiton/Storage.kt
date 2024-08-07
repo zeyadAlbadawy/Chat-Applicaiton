@@ -53,7 +53,6 @@ class Storage : AppCompatActivity(){
 
        println("Success")
        println(uidList.size)
-
        withContext(Dispatchers.IO) {
            for (uid in uidList) {
                val imageRef = ref.child(uid)
@@ -61,7 +60,6 @@ class Storage : AppCompatActivity(){
                    val downloadUrl = imageRef.downloadUrl.await()
                    uriList.add(mapOf(uid to downloadUrl))
                } catch (e: Exception) {
-                   // Add default URL if image not found
                    val defaultUri = "https://firebasestorage.googleapis.com/v0/b/chat-application-8a1d7.appspot.com/o/userimage%2Fuser.png?alt=media&token=1d4272bd-0f9e-4e67-9738-727ce232ad2c".toUri()
                    uriList.add(mapOf(uid to defaultUri))
                }

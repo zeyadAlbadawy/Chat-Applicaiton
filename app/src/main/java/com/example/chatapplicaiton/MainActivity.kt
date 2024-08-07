@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var searchbtn: ImageButton
     lateinit var settingbtn :ImageButton
-    lateinit var customAdapter: User_Adapter
     companion object {
+    lateinit var customAdapter: User_Adapter
         var list = ArrayList<User>()
     }
     @SuppressLint("WrongViewCast", "MissingInflatedId", "CutPasteId", "NotifyDataSetChanged")
