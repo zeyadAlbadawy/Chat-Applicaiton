@@ -49,6 +49,7 @@ class Setting : AppCompatActivity() {
         val logoutbtn =findViewById<Button>(R.id.logoutbtn)
         val addimagebtn =findViewById<Button>(R.id.changeimagebtn)
         logoutbtn.setOnClickListener{
+            MainActivity.list.clear()
             auth.signOut()
             val intent =Intent(this,Login::class.java).setAction("finish_activity")
             startActivity(intent)
