@@ -2,6 +2,7 @@ package com.example.chatapplicaiton
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,8 @@ class Search : AppCompatActivity() {
         var userslist=ArrayList<User>()
         val recyclerView: RecyclerView = findViewById(R.id.searchview)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        customAdapter = User_Adapter(this,userslist )
+        val view : View = findViewById(android.R.id.content)
+        customAdapter = User_Adapter(this,userslist ,view)
         recyclerView.adapter = customAdapter
         val searchbox: EditText = findViewById(R.id.searchbox)
         searchbox.doOnTextChanged { text, start, before, count ->

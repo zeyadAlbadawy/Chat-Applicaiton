@@ -2,6 +2,7 @@
 agp = "8.5.1"
 firebaseBom = "33.1.2"
 glide = "4.4.0"
+glideVersion = "4.12.0"
 kotlin = "1.9.22"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -25,7 +26,9 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-storage = { module = "com.google.firebase:firebase-storage" }
+github-glide = { module = "com.github.bumptech.glide:glide" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-v4120 = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
 google-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

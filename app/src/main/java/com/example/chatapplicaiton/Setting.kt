@@ -22,9 +22,8 @@ import com.google.firebase.storage.ktx.storage
 import java.io.FileOutputStream
 
 class Setting : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
+     var auth: FirebaseAuth=Firebase.auth
     lateinit var userimage:ImageView
-    private lateinit var storage: StorageReference
     @RequiresApi(Build.VERSION_CODES.P)
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
@@ -44,11 +43,11 @@ class Setting : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val view=findViewById<View>(android.R.id.content)
         userimage=findViewById(R.id.addedimage)
-        auth=Firebase.auth
+        Storage().getsettingimage(this, view)
         val logoutbtn =findViewById<Button>(R.id.logoutbtn)
         val addimagebtn =findViewById<Button>(R.id.changeimagebtn)
-
         logoutbtn.setOnClickListener{
             auth.signOut()
             val intent =Intent(this,Login::class.java).setAction("finish_activity")
