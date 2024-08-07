@@ -2,11 +2,15 @@ package com.example.chatapplicaiton
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Rect
 import android.inputmethodservice.Keyboard
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,8 +30,8 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var mDbRef: DatabaseReference
     private lateinit var senderNode: String
     private lateinit var receiverNode: String
-    private lateinit var sendbutton : ImageView
-    private lateinit var messagebox :EditText
+    private lateinit var sendbutton: ImageView
+    private lateinit var messagebox: EditText
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +43,12 @@ class ChatActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val rootView: View = findViewById(android.R.id.content)
+
         messageList = ArrayList()
         messagesRecycler = findViewById(R.id.messages)
         messagesRecycler.layoutManager = LinearLayoutManager(this)
-        messageAdapter= MessageAdapter(this,messageList)
+        messageAdapter = MessageAdapter(this, messageList)
         messagesRecycler.adapter = messageAdapter
         // Initialize Firebase Database reference
         mDbRef = FirebaseDatabase.getInstance().reference
@@ -55,41 +61,61 @@ class ChatActivity : AppCompatActivity() {
         senderNode = "$receiverUid$senderUid"
         receiverNode = "$senderUid$receiverUid"
         // Initialize RecyclerView and adapter
-        sendbutton =findViewById(R.id.sendBtn)
-                    val userbar=findViewById<TextView>(R.id.userbar)
-                    userbar.text=intent.getStringExtra("name",)
-        messagebox=findViewById(R.id.messageBox)
-        mDbRef.child("chats").child(senderNode).child("messages")
-            .addValueEventListener(object : ValueEventListener {
-                @SuppressLint("NotifyDataSetChanged")
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    messageList.clear()
-                    for (postSnapshot in snapshot.children) {
-                        val message = postSnapshot.getValue(Message::class.java)
-                        messageList.add(message!!)
-                    }
-                        println("======================we are in Datachange")
-                    println(messageList.size)
-                    messageAdapter.notifyDataSetChanged()
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    // Handle error
-                }
-            })
-        sendbutton.setOnClickListener{
-            val message=messagebox.text.toString()
-            val messageobject=Message(message,senderUid)
-            mDbRef.child("chats").child(senderNode).child("messages").push().setValue(messageobject).addOnSuccessListener {
-                if(senderNode!=receiverNode) {
+        sendbutton = findViewById(R.id.sendBtn)
+        val userbar = findViewById<TextView>(R.id.userbar)
+        userbar.text = intent.getStringExtra("name", )
+        messagebox = findViewById(R.id.messageBox)
+        val footter=findViewById<LinearLayout>(R.id.footerlayout)
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val rect = Rect()
+            rootView.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = rootView.height
+            val keypadHeight = screenHeight - rect.bottom
 
-                    mDbRef.child("chats").child(receiverNode).child("messages").push().setValue(messageobject)
-                }
-
+            if (keypadHeight > 100) { // If keyboard is visible
+                val layoutParams = footter.layoutParams as ViewGroup.MarginLayoutParams
+                layoutParams.bottomMargin = keypadHeight
+                footter.layoutParams = layoutParams
+                // Optionally scroll to the end of the messages
+                messagesRecycler.scrollToPosition(messageList.size - 1)
+            } else {
+                val layoutParams = footter.layoutParams as ViewGroup.MarginLayoutParams
+                layoutParams.bottomMargin = 0
+                footter.layoutParams = layoutParams
             }
-            messagebox.setText("")
+            mDbRef.child("chats").child(senderNode).child("messages")
+                .addValueEventListener(object : ValueEventListener {
+                    @SuppressLint("NotifyDataSetChanged")
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        messageList.clear()
+                        for (postSnapshot in snapshot.children) {
+                            val message = postSnapshot.getValue(Message::class.java)
+                            messageList.add(message!!)
+                        }
+                        println("======================we are in Datachange")
+                        println(messageList.size)
+                        messageAdapter.notifyDataSetChanged()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle error
+                    }
+                })
+            sendbutton.setOnClickListener {
+                val message = messagebox.text.toString()
+                val messageobject = Message(message, senderUid)
+                mDbRef.child("chats").child(senderNode).child("messages").push().setValue(messageobject).addOnSuccessListener {
+                    if (senderNode != receiverNode) {
+
+                        mDbRef.child("chats").child(receiverNode).child("messages").push().setValue(messageobject)
+                    }
+
+                }
+                messagebox.setText("")
+            }
+            // Listen for new messages in the database
+            // Additional logic for sending messages can be added here
+            // For example, handling user input and updating the database
         }
-        // Listen for new messages in the database
-        // Additional logic for sending messages can be added here
-        // For example, handling user input and updating the database
     }
 }

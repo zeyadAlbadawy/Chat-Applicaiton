@@ -59,7 +59,6 @@ dependencies {
     implementation (libs.kotlinx.coroutines.core)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.storage)
-
 }
 
 

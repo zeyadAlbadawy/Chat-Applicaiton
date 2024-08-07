@@ -34,7 +34,6 @@ class Login : AppCompatActivity() {
             insets
         }
         view=findViewById(android.R.id.content)
-        supportActionBar?.hide()
         resetpass = view.findViewById(R.id.sendemail)
         resetpass.setOnClickListener{
             val intent = Intent(this,Resetpassword::class.java)

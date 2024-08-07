@@ -1,6 +1,5 @@
 package com.example.chatapplicaiton
 
-import MemoryCache
 import android.content.Context
 import android.net.Uri
 import android.view.View
@@ -18,13 +17,13 @@ class Storage {
         storage= Firebase.storage.reference
         storage.child("userimage").child(auth.currentUser!!.uid).putFile(uri).addOnSuccessListener {
          Toast.makeText(context,"image added successfully",Toast.LENGTH_SHORT).show()
-            MemoryCache<String,Uri>(1024*1024).put("myimage",uri)
         }.addOnFailureListener{
             println("=======================Fail")
             view.findViewById<ImageView>(R.id.addedimage).setImageResource(R.drawable.user)
         }
     }
-    fun getimage(){
+    fun getimage(context: Context,view: View){
+        val image= storage.child("userimage").child(auth.currentUser!!.uid)
 
     }
 
