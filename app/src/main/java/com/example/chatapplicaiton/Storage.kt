@@ -1,5 +1,6 @@
 package com.example.chatapplicaiton
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.view.View
@@ -13,8 +14,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class Storage : AppCompatActivity(){
     private lateinit var storage: StorageReference
@@ -37,22 +42,22 @@ class Storage : AppCompatActivity(){
                 val imageView:ImageView=view.findViewById(R.id.addedimage)
                 Glide.with(context).load(it).into(imageView)
             }
-
         }
-
     }
-    fun putuserimage() : ArrayList<Map<String ,Uri>>{
+   @SuppressLint("NotifyDataSetChanged")
+   suspend fun putuserimage(uidlist :ArrayList<String>) : ArrayList<Map<String ,Uri>>{
         val urilist = ArrayList<Map<String ,Uri>>()
-        val uidlist =Database().getdata()["uid"] ?: emptyList()
         storage= Firebase.storage.reference
         val ref= storage.child("userimage")
         println("successsssssssssssssssssssssssssssssssssssssssssssss")
-        println(uidlist.size)
-           for (i in uidlist){
-               ref.child(i).downloadUrl.addOnSuccessListener {
-                   urilist.add(mapOf(i to it))
-               }
-           }
+    println(uidlist.size)
+       runBlocking {
+    for (i in uidlist){
+        ref.child(i).downloadUrl.addOnSuccessListener {
+            urilist.add(mapOf(i to it))
+       }.await()
+        }
+}
     return urilist
 }
 }

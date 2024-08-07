@@ -64,16 +64,18 @@ class MainActivity : AppCompatActivity() {
     }
     @SuppressLint("NotifyDataSetChanged")
     private fun ordereddata() {
-        val images=Storage().putuserimage()
-            val data = Database().getdata()
         lifecycleScope.launch {
+            val data = Database().getdata(MainActivity())
             delay(2000)
+            val images= Storage().putuserimage(data["uid"] !!)
+            delay(500)
+            Storage().putuserimage(data["uid"] !!)
+            println("images=====================$images")
             val names = data["name"] ?: emptyList()
             val emails = data["email"] ?: emptyList()
             val uid = data["uid"] ?: emptyList()
             withContext(Dispatchers.Default) {
                 for (i in 0 until uid.size) {
-                    println(images)
                     if(i<= images.size -1){
                     list.add(User(names[i], emails[i],uid[i],images[i][uid[i]] !!))
                     }

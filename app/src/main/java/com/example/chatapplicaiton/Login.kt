@@ -22,7 +22,6 @@ class Login : AppCompatActivity() {
     private lateinit var resetpass: Button
     private lateinit var view: View
     private lateinit var auth : FirebaseAuth
-
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

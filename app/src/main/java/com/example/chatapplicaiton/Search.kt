@@ -37,7 +37,7 @@ class Search : AppCompatActivity() {
                 userslist.clear()
                 for (i in MainActivity.list) {
 
-                        if (i.name.startsWith(text!!) && !userslist.contains(i)) {
+                        if (i.name.startsWith(text!!, ignoreCase = true) && !userslist.contains(i)) {
                             userslist.add(i)
                             customAdapter.notifyDataSetChanged()
                         }

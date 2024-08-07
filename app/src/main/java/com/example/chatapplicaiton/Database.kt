@@ -1,4 +1,6 @@
 package com.example.chatapplicaiton
+import android.content.Context
+import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -12,7 +14,9 @@ import com.google.firebase.database.ktx.values
 import com.google.firebase.database.snapshots
 import com.google.firebase.database.values
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.lang.reflect.Type
 
@@ -35,37 +39,35 @@ class Database {
         println(auth.currentUser!!.uid)
         database.child("User").child(auth.currentUser!!.uid).updateChildren(hashMapOf<String,Any>("is email verified" to auth.currentUser!!.isEmailVerified))
     }
-fun getdata() : Map<String,ArrayList<String>>{
+fun getdata(context: Context) : Map<String,ArrayList<String>>{
 
         var  listname = ArrayList<String>()
         var  listemail = ArrayList<String>()
         var  listuid = ArrayList<String>()
         println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet")
         val dataref= database.child("User")
-        dataref.addListenerForSingleValueEvent(object :ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-                println(error.message)
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                listname.clear()
-                listemail.clear()
-                     val snap= snapshot.getValue() as Map<String,Map<String,*>>
-                for (i in snap.keys.toList()){
-                    listuid.add(i.toString())
+            dataref.addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(context,"Please try again",Toast.LENGTH_SHORT).show()
                 }
-                        var mp = snap.values
-                for (i in mp){
-                    listname.add(i["name"].toString())
-                    listemail.add(i["email"].toString())
-                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    listname.clear()
+                    listemail.clear()
+                    val snap= snapshot.getValue() as Map<String,Map<String,*>>
+                    for (i in snap.keys.toList()){
+                        listuid.add(i.toString())
+                    }
+                    var mp = snap.values
+                    for (i in mp){
+                        listname.add(i["name"].toString())
+                        listemail.add(i["email"].toString())
+                    }
                     println(listemail)
                     println(listname)
                     println(listuid)
-
-
+                }
             }
-        })
+            )
         return mapOf<String,ArrayList<String>>("name" to listname,"email" to listemail,"uid" to listuid)
         }
 }
