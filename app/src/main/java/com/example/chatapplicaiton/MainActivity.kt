@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -64,12 +65,11 @@ class MainActivity : AppCompatActivity() {
     }
     @SuppressLint("NotifyDataSetChanged")
     private fun ordereddata() {
+            val data = Database().getdata(this)
         lifecycleScope.launch {
-            val data = Database().getdata(MainActivity())
             delay(2000)
-            val images= Storage().putuserimage(data["uid"] !!)
+            val images= Storage().putUserImage(data["uid"] !!)
             delay(500)
-            Storage().putuserimage(data["uid"] !!)
             println("images=====================$images")
             val names = data["name"] ?: emptyList()
             val emails = data["email"] ?: emptyList()

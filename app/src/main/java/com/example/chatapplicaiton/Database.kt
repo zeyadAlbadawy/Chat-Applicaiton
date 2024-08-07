@@ -1,4 +1,5 @@
 package com.example.chatapplicaiton
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
 import com.google.android.gms.tasks.Task
@@ -46,7 +47,8 @@ fun getdata(context: Context) : Map<String,ArrayList<String>>{
         var  listuid = ArrayList<String>()
         println("geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet")
         val dataref= database.child("User")
-            dataref.addListenerForSingleValueEvent(object :ValueEventListener{
+            dataref.addListenerForSingleValueEvent(@SuppressLint("SuspiciousIndentation")
+            object :ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(context,"Please try again",Toast.LENGTH_SHORT).show()
                 }

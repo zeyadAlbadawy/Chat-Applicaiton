@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -45,19 +46,28 @@ class Storage : AppCompatActivity(){
         }
     }
    @SuppressLint("NotifyDataSetChanged")
-   suspend fun putuserimage(uidlist :ArrayList<String>) : ArrayList<Map<String ,Uri>>{
-        val urilist = ArrayList<Map<String ,Uri>>()
-        storage= Firebase.storage.reference
-        val ref= storage.child("userimage")
-        println("successsssssssssssssssssssssssssssssssssssssssssssss")
-    println(uidlist.size)
-       runBlocking {
-    for (i in uidlist){
-        ref.child(i).downloadUrl.addOnSuccessListener {
-            urilist.add(mapOf(i to it))
-       }.await()
-        }
-}
-    return urilist
-}
+   suspend fun putUserImage(uidList: ArrayList<String>): ArrayList<Map<String, Uri>> {
+       val uriList = ArrayList<Map<String, Uri>>()
+       val storage = Firebase.storage.reference
+       val ref = storage.child("userimage")
+
+       println("Success")
+       println(uidList.size)
+
+       withContext(Dispatchers.IO) {
+           for (uid in uidList) {
+               val imageRef = ref.child(uid)
+               try {
+                   val downloadUrl = imageRef.downloadUrl.await()
+                   uriList.add(mapOf(uid to downloadUrl))
+               } catch (e: Exception) {
+                   // Add default URL if image not found
+                   val defaultUri = "https://firebasestorage.googleapis.com/v0/b/chat-application-8a1d7.appspot.com/o/userimage%2Fuser.png?alt=media&token=1d4272bd-0f9e-4e67-9738-727ce232ad2c".toUri()
+                   uriList.add(mapOf(uid to defaultUri))
+               }
+           }
+       }
+
+       return uriList
+   }
 }
