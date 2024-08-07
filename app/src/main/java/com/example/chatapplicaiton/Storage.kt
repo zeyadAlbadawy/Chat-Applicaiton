@@ -53,7 +53,6 @@ class Storage : AppCompatActivity(){
                    urilist.add(mapOf(i to it))
                }
            }
-
     return urilist
 }
 }
