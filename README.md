@@ -40,10 +40,12 @@ ideaidea
 
 # Search Bar
 - Search for the users i can chat with
+  
 ![23](https://github.com/user-attachments/assets/af13e7d1-2bef-4e8e-9bcc-fd4eb7d87c94)
 
 
 # LogOut And Upload Image
+
 ![24](https://github.com/user-attachments/assets/1775dfa2-3920-4bed-8a32-755db07630d1)
 
 
