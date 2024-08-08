@@ -27,10 +27,31 @@ ideaidea
 # Register Page
 
 - Looks Like that Which Allow Non-Registered Users To Enter Their credentials 
-   
-
 
 ![Screenshot_20240802_021009](https://github.com/user-attachments/assets/cef85c0d-0db4-4aea-8638-b87405cd4a60)
+
+
+
+# User Adapter
+- Look Like that and it is for the users who signed up, Allow me to chat with them
+
+![22](https://github.com/user-attachments/assets/5ac6e764-7eef-463d-967e-e9a2b06a8b31)
+
+
+# Search Bar
+- Search for the users i can chat with
+![23](https://github.com/user-attachments/assets/af13e7d1-2bef-4e8e-9bcc-fd4eb7d87c94)
+
+
+# LogOut And Upload Image
+![24](https://github.com/user-attachments/assets/1775dfa2-3920-4bed-8a32-755db07630d1)
+
+
+# Chat With Some One
+
+
+
+
 ## TODOs
 - [ ] removing the debugging "PrintLns"
 - [ ] feature to autologin user after signup
