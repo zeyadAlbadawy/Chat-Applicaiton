@@ -50,8 +50,7 @@ ideaidea
 
 
 # Chat With Some One
-
-
+![finalR](https://github.com/user-attachments/assets/84031d88-03de-4e10-bd12-de1d328ba25b)
 
 
 ## TODOs
