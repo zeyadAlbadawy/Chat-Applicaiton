@@ -58,3 +58,13 @@ ideaidea
 - [ ] feature to autologin user after signup
 - [ ] UI enhancements: removing unused text views > Toasts and cheese?
 
+## Contributors
+
+Thanks to these wonderful people for their contributions:
+
+- Kareem Gamal
+- Ahmed Gharib
+- Osama Zakaria
+- Kareem Ah,ed
+
+Your contributions are greatly appreciated! 🎉
