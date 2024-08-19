@@ -65,6 +65,6 @@ Thanks to these wonderful people for their contributions:
 - Kareem Gamal
 - Ahmed Gharib
 - Osama Zakaria
-- Kareem Ah,ed
+- Kareem Ahmed
 
 Your contributions are greatly appreciated! 🎉
